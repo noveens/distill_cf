@@ -42,6 +42,10 @@ Once you've correctly setup the python environment, the following script will do
 ```bash
 CUDA_VISIBLE_DEVICES=0 python distill.py
 ```
+- Alternatively, to run a grid search on various hyper-parameters of Distill-CF, please edit the configuration (including GPU-ID) in `grid_search_distill.py` and then run:
+```bash
+python grid_search_distill.py
+```
 
 ---
 ## Results sneak-peak

@@ -127,7 +127,7 @@ def train_complete(hyper_params, data):
     log_end_epoch(hyper_params, test_metrics, best_step, time.time() - orig_start_time)
     return params, test_metrics
 
-def main(hyper_params, gpu_id = None):
+def main(hyper_params, data = None, gpu_id = None):
     if gpu_id is not None: os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_id)
 
     from jax.config import config
@@ -144,8 +144,13 @@ def main(hyper_params, gpu_id = None):
     os.makedirs("./results/logs/", exist_ok=True)
     os.makedirs("./results/distilled_data/", exist_ok=True)
     
-    data = Dataset(hyper_params)
-    hyper_params = copy.deepcopy(data.hyper_params) # Updated w/ data stats
+    if data is None: data = Dataset(hyper_params)
+    hyper_params = copy.deepcopy(hyper_params) # Updated w/ data stats
+    hyper_params.update({
+        'num_users': data.num_users,
+        'num_items': data.num_items,
+        'num_interactions': data.num_interactions
+    }) # Updated w/ data-stats
 
     # Data distillation
     params_final, test_metrics = train_complete(hyper_params, data)
