@@ -8,14 +8,13 @@ This repository contains the implementation of Distill-CF (using ∞-AE) from th
 
 The paper also proposes ∞-AE: a SoTA implicit feedback recommendation model that has a closed-form solution, and only a single hyper-parameter. We provide ∞-AE's code in a separate [GitHub repository](https://github.com/noveens/infinite_ae_cf).
 
-If you find any module of this repository helpful for your own research, please consider citing the below under-review paper. Thanks!
+If you find any module of this repository helpful for your own research, please consider citing the below paper. Thanks!
 ```
-@article{sachdeva2022b,
+@article{inf_ae_distill_cf,
   title={Infinite Recommendation Networks: A Data-Centric Approach},
   author={Sachdeva, Noveen and Dhaliwal, Mehak Preet and Wu, Carole-Jean and McAuley, Julian},
   booktitle={Advances in Neural Information Processing Systems},
   series={NeurIPS '22},
-  publisher={Curran Associates, Inc.},
   year={2022}
 }
 ```
@@ -31,11 +30,7 @@ pip install -r requirements.txt
 ```
 
 #### Data Setup
-Once you've correctly setup the python environment, the following script will download the ML-1M dataset and preprocess it for usage:
-
-```bash
-./prep.sh
-```
+This repository already includes the pre-processed data for ML-1M, Amazon Magazine, and Douban datasets as described in the paper. The code for pre-processing is in `preprocess.py`.
 
 ---
 ## How to distill data?
